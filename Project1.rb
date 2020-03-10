@@ -30,6 +30,24 @@ guess = 100
 total_correct_answer = initial_guess.inject(:+) #random method to add integers in array
 p total_correct_answer #confirmed that I gots me a new variable for the next bit
 
+    for name in player_names
+        p "#{name}, here's where things start to get interesting. Ready to win?"
+        p "--------------------------------------------------------------------"
+        p "Please place your guess for the TOTAL amount"
+        final_guess = gets.chomp.to_i
+            
+        
+        if final_guess == total_correct_answer
+            p "WINNA"
+            else
+            p "NOPE"
+            end
+    end
+
+    #surrounded in while loop
+    #whoever guesses correctly, revoved from the players array
+
+
 
 
 
