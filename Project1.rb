@@ -14,6 +14,7 @@ p player_names
 initial_guess = []
 guess = 100
 
+until player_names.length == 1 do
     for name in player_names
         p "Dearest friend #{name}, now please choose a number between 0-3 (inclusive)"
         guess = gets.chomp.to_i
@@ -27,94 +28,34 @@ guess = 100
     end
     p initial_guess
 
-total_correct_answer = initial_guess.inject(:+) #random method to add integers in array
-p total_correct_answer #confirmed that I gots me a new variable for the next bit
+total_correct_answer = initial_guess.inject(:+)
+p total_correct_answer
 
-    for name in player_names
-        p "#{name}, here's where things start to get interesting. Ready to win?"
+    i = 0
+    while i < player_names.length
+        p "#{player_names[i]}, here's where things start to get interesting. Ready to win?"
         p "--------------------------------------------------------------------"
+        player_names.empty? == false
         p "Please place your guess for the TOTAL amount"
-        final_guess = gets.chomp.to_i
-            
-        
-        if final_guess == total_correct_answer
+            final_guess = gets.chomp.to_i
+            if final_guess == total_correct_answer
+            player_names.delete(player_names[i])
             p "WINNA"
+            return
             else
             p "NOPE"
+            i = i + 1
             end
+        if player_names.length >= 2 && i == player_names.length
+        i = 0
+        else
+        
+        end
+        
     end
-
-    #surrounded in while loop
-    #whoever guesses correctly, revoved from the players array
+end
 
 
-
-
-
-
-
-
-
-
-# guess = nil
-# correct_answer = 10
-
-# while guess != correct_answer
-#     print "Enter a guess: "
-#     guess = gets.chomp.to_i
-#     if guess < correct_answer
-#         puts "Guess Higher"
-#     elsif guess > correct_answer
-#         puts "Guess Lower"
-#     end
-# end   
-# puts "You guess correctly!" 
-
-
-
-
-
-
-
-# array = [ ]
-# input = gets.chomp
-# while
-#   input != ''
-#   array.push input
-#   input = gets.chomp  
-# end
-# puts array
-
-# something = []
-# puts “Say something…”
-# loop do
-# nextline = gets.chomp
-# something << nextline
-# break if nextline == “”
-# end
-# puts something
-
-
-
-# # # while guess != correct_answer
-# # #     print "enter a guess: "
-# # #     guess = gets.chomp.to_i
-# # #     if guess == correct_answer
-# # #         puts "You guessed correctly"
-# # #     elsif guess < correct_answer
-# # #         puts "Guess higher"
-# # #     else
-# # #         puts "Guess lower"
-# # #     end
-# # # end
-
-
-# # # # print "What's your name?"
-# # # # name = gets.chomp
-
-# # # # while name != "exit"            #the user doesn't enter exit
-# # # #     puts  "Hello #{}"
-# # # #     puts  "What's your name?"
-# # # #     name = gets.chomp
-
-# # # # end
+    #now that someone's run, we want to run the guessing part of the program MINUS that person
+    # from the array
+    #wrap function call (player_names) until array == array.length == 1
