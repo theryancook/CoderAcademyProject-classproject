@@ -1,10 +1,12 @@
-player_names = []
-response = ""
 require "tty-prompt" #gem number 1 - simple way to ask yes/no question
 require "tty-box"
+require 'colorize'
+
+player_names = []
+response = ""
 prompt = TTY::Prompt.new
 
-print TTY::Box.frame "Welcome to SPOOF! Someone's luck is about to run out T.T Everyone else, enjoy!"
+print TTY::Box.frame "Welcome to *SPOOF!*\nSomeone's luck is about to run out T.T\nEveryone else, enjoy!"
     while response != "\"No\"" #have to use the weird syntax here, because when I printed response that's how it was coming out from the gem
         print TTY::Box.frame "Yo! Potential loser! Enter your name:"
         name = gets.chomp()
@@ -12,26 +14,29 @@ print TTY::Box.frame "Welcome to SPOOF! Someone's luck is about to run out T.T E
         response = prompt.select("Are there any more players?", %w("Yes" "No")) #purpose of this is to know when to exit the loop
     end
 
-print TTY::Box.frame "So, the potential losers for those game are:"
-p player_names
+print TTY::Box.frame "So, the potential losers for those game are:", player_names
 
 def spoof(player_names)
+    
+    exit_loop = 0
     guess = 100
     initial_guess = []
+
     for name in player_names
-        print TTY::Box.frame "Dearest friend #{name}, now please choose a number between 0-3 (inclusive)"
+        print TTY::Box.frame "#{name}, now please choose a number between 0-3 (inclusive)"
         guess = gets.chomp.to_i
             while guess < 0 || guess > 3
-                print TTY::Box.frame "That number doesn't appear to be between 0 and 3. Please choose a number between ZERO and THREE - inclusive", "Please guess again"
+                print TTY::Box.frame "That number doesn't appear to be between 0 and 3. Please choose a number between ZERO and THREE - inclusive. \nPlease guess again".colorize(:red)
                 guess = gets.chomp.to_i
             end
         initial_guess.push(guess)
     end
     
-p initial_guess
+# (p initial_guess) this needs to be hidden because we don't want people to know what the answer is
 
 total_correct_answer = initial_guess.inject(:+)
-p total_correct_answer
+
+# p total_correct_answer this needs to be hidden because we don't want people to know what the answer is
 
 i = 0
 # in reality, the person who went 2nd the first time would then go first, and the person who went first could go last etc
@@ -47,17 +52,24 @@ i = 0
                 return
             elsif player_names.length >= 2 && i == player_names.length - 1
                 i = 0
+                print TTY::Box.frame "NOPE"
+                exit_loop +=1
+                p exit_loop
             else
                 print TTY::Box.frame "NOPE"
+                exit_loop +=1
                 i = i + 1
             end 
+        if exit_loop == player_names.length
+            break
+        end
     end 
 end
 
 def runner(player_names)
-while player_names.length > 1
+    while player_names.length > 1
     spoof(player_names)
-end
+    end
 end
 
 ### ideally, if everyone gets the answer wrong, it would just loop again straight away
