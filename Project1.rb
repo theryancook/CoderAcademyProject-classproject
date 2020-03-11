@@ -14,13 +14,15 @@ print TTY::Box.frame "Welcome to *SPOOF!*\nSomeone's luck is about to run out T.
         response = prompt.select("Are there any more players?", %w("Yes" "No")) #purpose of this is to know when to exit the loop
     end
 
-print TTY::Box.frame "So, the potential losers for those game are:", player_names
+
 
 def spoof(player_names)
     
     exit_loop = 0
     guess = 100
     initial_guess = []
+
+    print TTY::Box.frame "So, the potential losers for those game are:", player_names
 
     for name in player_names
         print TTY::Box.frame "#{name}, now please choose a number between 0-3 (inclusive)"
