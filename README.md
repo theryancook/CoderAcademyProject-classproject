@@ -58,7 +58,7 @@ Utilise a suitable project management platform to track this implementation plan
 
 
 > Your checklists for each feature should have at least 5 items.
-https://trello.com/b/KHNcZfPh/project-1
+public Trello board > https://trello.com/b/KHNcZfPh/project-1
 
 Design help documentation which includes a set of instructions which accurately describe how to use and install the application.
 
