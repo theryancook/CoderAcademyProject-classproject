@@ -27,9 +27,11 @@ def spoof(player_names)
     for name in player_names    #lets us run through the whole array without knowing how many players there are
         print TTY::Box.frame "#{name}, now please choose a number between 0-3 (inclusive)"
         guess = gets.chomp.to_i
+        system("clear")
             while guess < 0 || guess > 3    #ensures that players can ONLY select valid integers, and requires them to select again if they don't
                 print TTY::Box.frame "#{name}, it seems like you have some difficulty following instructions.\nThat number doesn't appear to be between 0 and 3.\nPlease choose a number between ZERO (0) and THREE (3) - inclusive.\nPlease guess again.".colorize(:red)
                 guess = gets.chomp.to_i
+                system("clear")
             end
         initial_guess.push(guess)   #placed outside the while loop, so that the guess only gets pushed into the array if it's a valid integter
     end
