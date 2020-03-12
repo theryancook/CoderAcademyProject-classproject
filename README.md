@@ -81,6 +81,15 @@ gem install colorize
 
 Next step it to run the ruby file on your local machine in your terminal but navigating to the correct directory with the file and then running “ruby “FILENAME.rb””
 
+**Testing
+For testing, verify that you can enter user names.
+Verify yes lets you another another user, and no lets you move on.
+Verify you can enter numbers not outside the range of 0-3 and you get an error
+Verify that if you enter a number inside the range, the next user will be asked for their input.
+Verify that once every user has done their input, that you move onto the main guess.
+Verify that if someone gusses the final number incorrectly, they're given the response of "NOPE" in red
+Verify that if someone gusses the number correctly, that it displays winner in green.
+verify that once we're down to the last person, we exit the program as we have a loser
 
 
 
